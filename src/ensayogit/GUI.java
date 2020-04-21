@@ -5,7 +5,6 @@
  */
 package ensayogit;
 
-import java.awt.List;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Random;
@@ -26,6 +25,15 @@ public class GUI extends javax.swing.JFrame {
         initComponents();
         tamañoVector.setTransferHandler(null);
     }
+    
+    
+    private int sumarPosiciones( ArrayList<Integer> arregloNumeros){
+        int acumulador = 0;
+        for (int i = 0; i < arregloNumeros.size(); i++) {
+            acumulador += arregloNumeros.get(i);
+        }
+        return acumulador;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -36,12 +44,27 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         tamañoVector = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        label2 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+
+        jLabel6.setText("jLabel6");
+
+        jLabel7.setText("jLabel7");
+
+        jLabel8.setText("jLabel8");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,9 +81,17 @@ public class GUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2"
+                "posicion", "numeroAleatorio"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(table);
 
         jButton1.setText("Generar");
@@ -69,44 +100,91 @@ public class GUI extends javax.swing.JFrame {
                 jButton1MouseClicked(evt);
             }
         });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setText("jLabel2");
+        label2.setBackground(new java.awt.Color(0, 255, 204));
+        label2.setText("La suma de los números");
+
+        jLabel2.setText("La media de los números es: ");
+
+        jLabel3.setText("La moda de los números es:");
+
+        jLabel4.setText("La mediana de los números es:");
+
+        jLabel5.setText("La desviación media de los núeros es: ");
+
+        jLabel9.setText("La desviación estándar de los números es:");
+
+        jLabel10.setText("La varianza de los números es:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel1)
-                .addGap(37, 37, 37)
-                .addComponent(tamañoVector, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
+                .addGap(140, 140, 140))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel1)
+                        .addGap(37, 37, 37)
+                        .addComponent(tamañoVector, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel5))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel9))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel10))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(tamañoVector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tamañoVector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addGap(13, 13, 13)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel10)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
@@ -116,27 +194,98 @@ public class GUI extends javax.swing.JFrame {
         char c = evt.getKeyChar();
         if (!(Character.isDigit(c)) || c == KeyEvent.VK_BACK_SPACE || c == KeyEvent.VK_DELETE){
             evt.consume();
-        }else {
+        }
+      
+   
+    }//GEN-LAST:event_tamañoVectorKeyTyped
+
+    
+    
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        if (tamañoVector.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "SEÑOR USUARIO POR FAVOR INGRESE NUMERO ANTES DE INICIAR");
+        }  else {
             Random aleatorio = new Random();
             int numeroUsuario = Integer.parseInt(tamañoVector.getText());
+            
             for (int i = 0; i < numeroUsuario; i++) {
                 int numeroAleatorio = aleatorio.nextInt(50);
                 int posicion=i+1;
                 DefaultTableModel model = (DefaultTableModel) table.getModel();
                 model.addRow(new Object[]{posicion, numeroAleatorio});
-                arregloNumeros.add(numeroAleatorio);
+                arregloNumeros.add(i, numeroAleatorio);
+                
             }
-      
-    }//GEN-LAST:event_tamañoVectorKeyTyped
-
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
-        if (tamañoVector.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "SEÑOR USUARIO POR FAVOR INGRESE NUMERO ANTES DE INICIAR");
-        }  
+            label2.setText(String.valueOf(sumarPosiciones(arregloNumeros)));
+            this.jLabel2.setText("la media de los números es: "+String.valueOf(media()));
+            moda();
+            mediana();
+            desviacionEstandar();
+        }
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+    private void desviacionEstandar(){
+        float desviacionEstandar=0;
+        float sumatoria=0;
+        for (int i = 0; i < arregloNumeros.size(); i++) {
+            sumatoria += Math.pow(arregloNumeros.get(i)-media(),2); 
+        }
+        desviacionEstandar = (float) Math.sqrt(sumatoria / arregloNumeros.size());
+        this.jLabel10.setText(String.valueOf(desviacionEstandar));
+    }
+    private void mediana(){
+        float mediana = 0;
+        arregloNumeros.sort(null);
+        if(esPar(arregloNumeros.size())){
+            mediana = arregloNumeros.get((arregloNumeros.size() / 2) - 1) + arregloNumeros.get(arregloNumeros.size() / 2);
+            mediana=mediana/2;
+        }else{
+            mediana = arregloNumeros.get(arregloNumeros.size()/2);
+        }
+        this.jLabel4.setText("La mediana de los números es: " + mediana);
+    }
+    public boolean esPar(int i){
+        return i%2==0;
+    }
+    public int cuantasVeces (int i){
+        int contador = 0;
+        for (int j = 0; j < arregloNumeros.size(); j++) {
+            if( i == arregloNumeros.get(j)){
+                contador++;
+            }
+        }
+        return contador;
+    }
+    private void moda(){
+        int moda = 0;
+        int numeroVeces=0;
+        for (int i = 0; i < arregloNumeros.size(); i++) {
+            if (cuantasVeces(arregloNumeros.get(i))> numeroVeces){
+                moda = arregloNumeros.get(i);
+                numeroVeces = cuantasVeces (arregloNumeros.get(i));
+            }
+        }
+        this.jLabel3.setText("La moda de los números es: "+String.valueOf(moda));
+    }
+    
+    private float media(){
+        float media = 0;
+        int totalNumeros = arregloNumeros.size();
+        int sumaTotal = 0;
+        for (int i = 0; i < totalNumeros; i++) {
+            sumaTotal+=arregloNumeros.get(i);
+        }
+        media = sumaTotal/totalNumeros;
+        
+        return media;
+        
+    }
     /**
+     
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -174,8 +323,17 @@ public class GUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel label2;
     private javax.swing.JTable table;
     private javax.swing.JTextField tamañoVector;
     // End of variables declaration//GEN-END:variables
